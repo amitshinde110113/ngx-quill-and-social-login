@@ -1,0 +1,65 @@
+<div class="row mt-5">
+    <div class="col-md-4 offset-md-4 mt-5">
+        <div class="card py-0">
+            <div class="card-body py-0 pl-lg-0">
+                <div class="row">
+                    <div class="col-lg-12 py-5 px-lg-5">
+                        <h5 class="card-title mb-4 text-center text-md-left">Login to your account</h5>
+                        <form [formGroup]="loginForm" (ngSubmit)="submitForm()" role="form">
+                            <div class="form-group mb-2">
+                                <label>Email address</label>
+                                <input type="email" formControlName="email" class="form-control"
+                                    placeholder="Enter email"
+                                    [ngClass]="{ 'is-invalid': isSubmitted && f.email.errors }">
+                                <div *ngIf="isSubmitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.pattern">Invalid email
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control border-right-0" placeholder="Password"
+                                        formControlName="password"
+                                        [ngClass]="{ 'is-invalid': isSubmitted && f.password.errors }">
+
+                                    <div *ngIf="isSubmitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary "
+                                    [disabled]="isButtonDisabled">{{isButtonDisabled ? 'Logging in...' : 'Log
+                                    In'}}</button>
+                                <a routerLink="/auth/forgot-password"
+                                    class="text-secondary d-inline-block mt-3 flost-right">Forgot
+                                    password?</a>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-center text-muted my-3 small"> OR </div>
+                                <div class="d-flex justify-content-between">
+
+                                    <button class="btn btn-light" type="button" (click)="signInWithGoogle()"
+                                        [disabled]="isGoogleButtonDisabled">
+                                        <img src="assets/images/google.svg" class="googleImage" alt="Google logo">
+                                        {{isGoogleButtonDisabled ? 'Logging in...' : 'Log in with Google'}}
+                                    </button>
+                                    <button class="btn btn-light ml-2" type="button" (click)="signInWitFacebook()"
+                                        [disabled]="isFbButtonDisabled">
+                                        <img src="assets/images/facebook2.svg" class="fbImage" alt="FB logo">
+                                        {{isFbButtonDisabled ? 'Logging in...' : 'Log in with FB'}}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="text-center pt-4 mb-2">
+			<a routerLink="/auth/signup">Don't have account, signup now</a>
+		</div> -->
+    </div>
+</div>
